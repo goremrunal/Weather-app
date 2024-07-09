@@ -1,0 +1,17 @@
+.forecast-container {
+    background-color: rgba(34, 139, 34, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .forecast-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .forecast-item {
+    margin-bottom: 10px;
+  }
+  
