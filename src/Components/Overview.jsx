@@ -2,25 +2,41 @@ import React, { useState } from 'react';
 import Weather from './Weather';
 import Graph from './Graph';
 import './Overview.css';
+import './RainfallContainer';
+import './Forecast'
 
 const Overview = () => {
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
   const [forecastData, setForecastData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const apiKey = '8fbd3b1571c73c718314a597b7502785'; // Replace with your API key
+  const [error, setError] = useState(null);
+  const apiKey = '8fbd3b1571c73c718314a597b7502785';
 
   const fetchWeatherData = async () => {
+    if (!city) {
+      setError('Please enter a city name');
+      return;
+    }
+
     setLoading(true);
+    setError(null);
+
     try {
       const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
       const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=10&appid=${apiKey}&units=metric`;
 
-      const weatherResponse = await fetch(weatherUrl);
-      const forecastResponse = await fetch(forecastUrl);
+      const [weatherResponse, forecastResponse] = await Promise.all([
+        fetch(weatherUrl),
+        fetch(forecastUrl),
+      ]);
 
-      if (!weatherResponse.ok || !forecastResponse.ok) {
-        throw new Error('Data not available');
+      if (!weatherResponse.ok) {
+        throw new Error('Weather data not available');
+      }
+
+      if (!forecastResponse.ok) {
+        throw new Error('Forecast data not available');
       }
 
       const weatherData = await weatherResponse.json();
@@ -29,7 +45,7 @@ const Overview = () => {
       setWeatherData(weatherData);
       setForecastData(forecastData);
     } catch (error) {
-      console.error('Error fetching weather data:', error);
+      setError(error.message);
       setWeatherData(null);
       setForecastData(null);
     } finally {
@@ -39,7 +55,7 @@ const Overview = () => {
 
   return (
     <div className="overview">
-      <h1>Forest-Themed Weather App</h1>
+      <h1> Weather App</h1>
       <div className="weather-search">
         <label>Enter city: </label>
         <input
@@ -52,10 +68,12 @@ const Overview = () => {
       </div>
       {loading ? (
         <p>Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
       ) : (
         <>
-          <Weather weatherData={weatherData} />
-          <Graph forecastData={forecastData} />
+          {weatherData && <Weather weatherData={weatherData} />}
+          {forecastData && <Graph forecastData={forecastData} />}
         </>
       )}
     </div>

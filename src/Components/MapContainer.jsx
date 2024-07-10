@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css'; // Ensure leaflet CSS is imported
+import 'leaflet/dist/leaflet.css';
 
 const MapComponent = ({ city }) => {
   const [lat, setLat] = useState(0);
@@ -22,16 +22,16 @@ const MapComponent = ({ city }) => {
         const { lat, lng } = data.results[0].geometry;
         setLat(lat);
         setLng(lng);
-        setLoading(false);
       } catch (error) {
         console.error('Error fetching city coordinates:', error);
         setError('Failed to fetch city coordinates. Please try again later.');
+      } finally {
         setLoading(false);
       }
     };
 
     fetchCityCoords();
-  }, [city]); // Fetch coordinates when city prop changes
+  }, [city]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -44,7 +44,7 @@ const MapComponent = ({ city }) => {
   return (
     <div className="map-container">
       {lat !== 0 && lng !== 0 && (
-        <MapContainer center={[lat, lng]} zoom={12}>
+        <MapContainer center={[lat, lng]} zoom={12} style={{ height: '400px', width: '100%' }}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -1,11 +1,11 @@
 import React from 'react';
-import WeatherApp from './Components/WeatherApp';
 import './App.css';
+import Overview from './Components/Overview';
 
 const App = () => {
   return (
     <div className="App">
-      <WeatherApp />
+      <Overview />
     </div>
   );
 };

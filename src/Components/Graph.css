@@ -1,58 +1,25 @@
 .graph-container {
-    background-color: #101111;
-    padding: 20px;
-    border-radius: 10px;
-    color: #ffffff;
-    margin-top: 20px;
-    width: 100%;
-    max-width: 800px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .graph-container:hover {
-    transform: scale(1.02);
-  }
-  
-  .graph-container canvas {
-    background-color: #f0f3f3;
-    border-radius: 10px;
-    padding: 10px;
-  }
-  
-  .chartjs-render-monitor {
-    color: white !important;
-  }
-  
-  .chartjs-tooltip {
-    color: #ffffff !important;
-    background-color: #f5f8f8 !important;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .chartjs-tooltip-key {
-    background-color: #ffffff !important;
-  }
-  
-  .chart-legend {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-  }
-  
-  .chart-legend-item {
-    display: flex;
-    align-items: center;
-    margin: 0 10px;
-  }
-  
-  .chart-legend-item span {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin-right: 5px;
-    border-radius: 3px;
-  }
-  
+  width: 40%; /* adjust the width to your liking */
+  margin: 40px auto; /* center the graph container */
+  padding: 20px;
+  background-color: #f9f9f9; /* light gray background */
+  border: 1px solid #ddd; /* light gray border */
+  border-radius: 10px; /* rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* subtle shadow */
+}
+
+.graph {
+  width: 100%;
+  height: 300px; /* adjust the height to your liking */
+}
+
+.graph h3 {
+  margin-top: 0;
+  font-weight: bold;
+  color: #333; /* dark gray text */
+}
+
+.graph canvas {
+  width: 100% !important;
+  height: 100% !important;
+}

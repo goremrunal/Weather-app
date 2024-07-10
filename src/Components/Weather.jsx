@@ -5,7 +5,7 @@ const Weather = ({ weatherData }) => {
   const [units, setUnits] = useState('metric'); // 'metric' for Celsius, 'imperial' for Fahrenheit
 
   if (!weatherData || !weatherData.main || !weatherData.weather || !weatherData.weather[0]) {
-    return <div className="weather">Loading...</div>;
+    return <div className="weather-container">Loading...</div>;
   }
 
   const { main, weather } = weatherData;
@@ -27,13 +27,13 @@ const Weather = ({ weatherData }) => {
   };
 
   return (
-    <div className="weather">
+    <div className="weather-container">
       <h2>Current Weather</h2>
       <p>Temperature: {getTemperature()}</p>
       <p>Humidity: {humidity}%</p>
       <p>Description: {description}</p>
       <img src={`http://openweathermap.org/img/w/${icon}.png`} alt={description} />
-      <button onClick={toggleUnits}>Toggle Units</button>
+      <button onClick={toggleUnits}>{units === 'metric' ? '°C' : '°F'}</button>
     </div>
   );
 };

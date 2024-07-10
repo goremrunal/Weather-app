@@ -44,50 +44,45 @@ const Graph = ({ forecastData }) => {
 
   const options = {
     scales: {
-      y: [
-        {
-          id: 'temperature',
-          type: 'linear',
-          position: 'left',
-          ticks: {
-            beginAtZero: true,
-          },
-          scaleLabel: {
-            display: true,
-            labelString: 'Temperature (°C)',
-          },
+      temperature: {
+        type: 'linear',
+        position: 'left',
+        ticks: {
+          beginAtZero: true,
         },
-        {
-          id: 'humidity',
-          type: 'linear',
-          position: 'right',
-          ticks: {
-            beginAtZero: true,
-          },
-          grid: {
-            drawOnChartArea: false,
-          },
-          scaleLabel: {
-            display: true,
-            labelString: 'Humidity (%)',
-          },
+        title: {
+          display: true,
+          text: 'Temperature (°C)',
         },
-        {
-          id: 'rainfall',
-          type: 'linear',
-          position: 'right',
-          ticks: {
-            beginAtZero: true,
-          },
-          grid: {
-            drawOnChartArea: false,
-          },
-          scaleLabel: {
-            display: true,
-            labelString: 'Rainfall (mm)',
-          },
+      },
+      humidity: {
+        type: 'linear',
+        position: 'right',
+        ticks: {
+          beginAtZero: true,
         },
-      ],
+        grid: {
+          drawOnChartArea: false,
+        },
+        title: {
+          display: true,
+          text: 'Humidity (%)',
+        },
+      },
+      rainfall: {
+        type: 'linear',
+        position: 'right',
+        ticks: {
+          beginAtZero: true,
+        },
+        grid: {
+          drawOnChartArea: false,
+        },
+        title: {
+          display: true,
+          text: 'Rainfall (mm)',
+        },
+      },
     },
   };
 
